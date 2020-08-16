@@ -12,3 +12,5 @@ crate-type = ["cdylib", "rlib"]
 [dependencies]
 yew = "0.17.2"
 wasm-bindgen = "0.2.67"
+anyhow = "1.0.32"
+serde = { version = "1.0.115", features = ["derive"] }
