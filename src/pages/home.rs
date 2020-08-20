@@ -138,8 +138,11 @@ impl Component for Home {
         } else {
             html! {
                <div>
-                   <span>{format!("Cart Value: {:.2}", cart_value)}</span>
-                   <span>{products}</span>
+                    <div class="navbar">
+                        <div class="navbar_title">{"RustMart"}</div>
+                        <div class="navbar_cart_value">{format!("${:.2}", cart_value)}</div>
+                    </div>
+                    <div class="product_cart_list">{products}</div>
                </div>
             }
         }
