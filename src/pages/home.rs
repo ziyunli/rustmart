@@ -126,11 +126,23 @@ impl Component for Home {
             .iter()
             .fold(0.0, |acc, cp| acc + (cp.quantity as f64 * cp.product.price));
 
-        html! {
-           <div>
-               <span>{format!("Cart Value: {:.2}", cart_value)}</span>
-               <span>{products}</span>
-           </div>
+        if !self.state.get_products_loaded {
+            html! {
+                <div>{"Loading..."}</div>
+            }
+        } else if let Some(_) = self.state.get_products_error {
+            html! {
+                <div>
+                    <span>{"Error loading products! :("}</span>
+                </div>
+            }
+        } else {
+            html! {
+               <div>
+                   <span>{format!("Cart Value: {:.2}", cart_value)}</span>
+                   <span>{products}</span>
+               </div>
+            }
         }
     }
 }
