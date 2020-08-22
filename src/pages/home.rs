@@ -111,7 +111,7 @@ impl Component for Home {
             .map(|product: &Product| {
                 let product_id = product.id;
                 html! {
-                    <ProductCard 
+                    <ProductCard
                         product={product}
                         on_add_to_cart=self.link.callback(move |_| Msg::AddToCart(product_id))
                     />
@@ -126,17 +126,17 @@ impl Component for Home {
             .fold(0.0, |acc, cp| acc + (cp.quantity as f64 * cp.product.price));
 
         if !self.state.get_products_loaded {
-            html! {
+            return html! {
                 <div>{"Loading..."}</div>
-            }
+            };
         } else if let Some(_) = self.state.get_products_error {
-            html! {
+            return html! {
                 <div>
                     <span>{"Error loading products! :("}</span>
                 </div>
-            }
+            };
         } else {
-            html! {
+            return html! {
                <div>
                     <div class="navbar">
                         <div class="navbar_title">{"RustMart"}</div>
@@ -144,7 +144,7 @@ impl Component for Home {
                     </div>
                     <div class="product_cart_list">{products}</div>
                </div>
-            }
+            };
         }
     }
 }
